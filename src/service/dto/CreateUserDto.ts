@@ -1,27 +1,21 @@
+import { User } from "../../entity/User";
 
-import { User } from "../../entity/User"
+export class CreateUserDto {
+  private userId: string;
+  private password: string;
+  private email: string;
 
-export class CreateUserDto{
+  public constructor(request: any) {
+    this.userId = request.userId;
+    this.password = request.password;
+    this.email = request.email;
+  }
 
-    private userId: string;
-    private password: string;
-    private email: string;
+  public static createUserDto(user: User) {
+    return new CreateUserDto(user);
+  }
 
-    constructor(request :any){
-        this.userId = request.userId;
-        this.password = request.password;
-        this.email = request.email;
-    }
-
-
-    createUser() {
-        return User.from(
-            this.userId,
-            this.password,
-            this.email,
-            );
-     
-    }
+  public createUser() {
+    return User.from(this.userId, this.password, this.email);
+  }
 }
-
-

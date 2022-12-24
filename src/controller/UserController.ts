@@ -9,4 +9,7 @@ export class UserController {
     response.status(201).json();
   }
 
-}
+  async findUsers(request: Request, response: Response) {
+    const allUsers: CreateUserDto[] = await userService.findUsers();
+    response.status(200).json(allUsers);
+}}

@@ -7,14 +7,13 @@ export const AppDataSource = new DataSource({
   database: "database.sqlite",
   synchronize: true,
   logging: false,
-  entities:  [User] ,
+  entities: [User],
   migrations: [],
   subscribers: [],
 });
 
 AppDataSource.initialize()
-.then(() => {
-  console.log("database connected successfully");
-})
-.catch((error: Error) => console.log(error));
-
+  .then(() => {
+    console.log("database connected successfully");
+  })
+  .catch((error: Error) => console.log(error));
