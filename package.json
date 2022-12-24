@@ -2,35 +2,37 @@
   "name": "2022-12-22-seongyun-kim",
   "version": "1.0.0",
   "description": "> 해당 프로젝트를 수행하며 사용할 기술 스택입니다.",
-  "main": "index.js",
+  "main": "start.js",
   "scripts": {
+    "build": "tsc",
     "test": "jest",
-    "start": "node dist/src/app.js",
-    "dev": "nodemon dist/app.ts",
-    "build": "tsc -p ."
+    "start": "ts-node start.ts",
+    "dev": "nodemon --watch \"*.ts\" --exec \"ts-node\" start.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/birdview-coding-assignment/2022-12-22-Seongyun-Kim.git"
   },
-  "author": "",
+  "author": "sungyoon",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/birdview-coding-assignment/2022-12-22-Seongyun-Kim/issues"
   },
   "homepage": "https://github.com/birdview-coding-assignment/2022-12-22-Seongyun-Kim#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.1.4",
+    "typeorm": "0.3.11"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.18.6",
-    "@types/express": "^4.17.15",
-    "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.17",
+    "@types/node": "^16.11.10",
     "jest": "^29.3.1",
     "nodemon": "^2.0.20",
     "ts-jest": "^29.0.3",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
   }
 }
