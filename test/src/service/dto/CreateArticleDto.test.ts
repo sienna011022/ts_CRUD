@@ -34,12 +34,7 @@ test("로그인한 유저와 작성자가 일치하는지 비교 후 일치하�
       user: userId + "anotherId",
     },
   };
-
-  try {
-    CreateArticleDto.newArticleDto(request);
-  } catch (exception) {
-    expect(exception).toBeInstanceOf(NotFoundUserException);
-  }
+    expect(() =>  CreateArticleDto.newArticleDto(request)).toThrow(new NotFoundUserException);
 });
 
 test("CreateUserDto 를 User로 매핑한다", () => {

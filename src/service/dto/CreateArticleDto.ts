@@ -27,6 +27,10 @@ export default class CreateArticleDto {
     return Article.from(this.title, this.content, user);
   }
 
+  public static createArticleDto(article: Article) {
+    return new CreateArticleDto(article);
+  }
+
   public getUser() {
     return this.user;
   }

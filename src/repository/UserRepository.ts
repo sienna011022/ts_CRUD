@@ -1,5 +1,6 @@
 import { User } from "../entity/User";
 import { AppDataSource } from "../../data-source";
+import NotFoundUserException from "../exception/NotFoundUserException";
 
 class UserRepository {
   public repository;
@@ -17,9 +18,13 @@ class UserRepository {
   }
 
   public async findUser(userId: string) {
-    return await this.repository.findOne({
-      where: [{ userId: userId }],
-    });
+    try {
+      return await this.repository.findOne({
+        where: [{ userId: userId }],
+      });
+    } catch (exception) {
+      throw new NotFoundUserException();
+    }
   }
 }
 
