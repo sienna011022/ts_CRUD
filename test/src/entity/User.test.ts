@@ -13,3 +13,4 @@ describe("User Entity", () => {
     expect(user.password).toBe(password);
   });
 });
+

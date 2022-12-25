@@ -1,5 +1,5 @@
 import { User } from "../../../../src/entity/User";
-import { CreateUserDto } from "../../../../src/service/dto/CreateUserDto";
+import CreateUserDto from "../../../../src/service/dto/CreateUserDto";
 
 test("CreateUserDto 객체를 반환한다", () => {
   const request = {

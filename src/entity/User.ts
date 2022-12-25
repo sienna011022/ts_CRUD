@@ -1,39 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 @Entity()
 export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number
+  @Column({
+    type: "text",
+    length: 10,
+  })
+  userId: string;
 
-    @Column({
-        type:"text", 
-        length : 10
-    })
-    userId : string
+  @Column({
+    type: "text",
+    length: 20,
+  })
+  password: string;
 
-    @Column({
-        type:"text", 
-        length : 20
-    })
-    password: string
-
-    @Column({
-        type:"text", 
-        length : 30
-    })
-    email : string
-
-    static from(
-        userId : string,
-        password : string,
-        email : string
-    ){
-        const user = new User();
-        user.userId = userId;
-        user.password = password;
-        user.email = email;
-        return user;
-    }
-
+  @Column({
+    type: "text",
+    length: 30,
+  })
+  email: string;
+ 
+  public static from(userId: string, password: string, email: string) {
+    const user = new User();
+    user.userId = userId;
+    user.password = password;
+    user.email = email;
+    return user;
+  }
 }

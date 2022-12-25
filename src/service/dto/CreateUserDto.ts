@@ -1,6 +1,6 @@
 import { User } from "../../entity/User";
 
-export class CreateUserDto {
+export default class CreateUserDto {
   private userId: string;
   private password: string;
   private email: string;
