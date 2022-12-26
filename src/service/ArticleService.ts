@@ -20,11 +20,13 @@ export class ArticleService {
     for (let i = 0; i < articles.length; i++) {
       allArticles.push(new ArticleResponse(articles[i]));
     }
-
     return allArticles;
   }
 
-
+  public async deleteAllArticle(userId: string) {
+    const user = await userRepository.findUser(userId);
+    await articleRepository.deleteAllArticle(user);
+  }
 }
 
 let articleService = new ArticleService();

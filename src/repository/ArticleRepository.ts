@@ -19,11 +19,17 @@ export class ArticleRepository {
       where: [{ user: user }],
     });
 
-    if(articles.length == 0){
+    if (articles.length == 0) {
       throw new NotFoundArticleException();
     }
 
     return articles;
+  }
+
+  public async deleteAllArticle(user: User) {
+    this.articleRepository.delete({
+      where: [{ user: user }],
+    });
   }
 }
 
