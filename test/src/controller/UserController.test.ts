@@ -3,10 +3,9 @@ import httpMocks from "node-mocks-http";
 import repository from "../../../src/repository/UserRepository";
 import { User } from "../../../src/entity/User";
 
-repository.createUser = jest.fn();
-
-let req, res;
+let req, res, newUser;
 beforeEach(() => {
+  newUser = require("../data/new-user.json");
   req = httpMocks.createRequest();
   res = httpMocks.createResponse();
 });
@@ -19,6 +18,8 @@ describe("UserController 테스트", () => {
   });
 
   it("유저가 등록되면 201 상태코드를 반환한다", async () => {
+    req.body = newUser;
+    repository.createUser = jest.fn();
     await userController.createUser(req, res);
     expect(res.statusCode).toBe(201);
     expect(res._isEndCalled()).toBeTruthy();

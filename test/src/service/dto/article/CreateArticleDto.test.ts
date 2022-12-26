@@ -13,7 +13,7 @@ test("로그인한 유저와 작성자가 일치하는지 비교 후 객체를 �
     body: {
       title: "행복한 크리스마스 입니다",
       content: "Merry Christmas",
-      user: userId,
+      author: userId,
     },
   };
   expect(CreateArticleDto.newArticleDto(request)).toBeInstanceOf(
@@ -31,7 +31,7 @@ test("로그인한 유저와 작성자가 일치하는지 비교 후 일치하�
     body: {
       title: "행복한 크리스마스 입니다",
       content: "merry christmas",
-      user: userId + "anotherId",
+      author: userId + "anotherId",
     },
   };
     expect(() =>  CreateArticleDto.newArticleDto(request)).toThrow(new NotFoundUserException);
@@ -46,7 +46,7 @@ test("CreateUserDto 를 User로 매핑한다", () => {
     body: {
       title: "행복한 크리스마스 입니다",
       content: "christmas",
-      user: "sienna1022",
+      author: "sienna1022",
     },
   };
   const requestDto = CreateArticleDto.newArticleDto(request);
