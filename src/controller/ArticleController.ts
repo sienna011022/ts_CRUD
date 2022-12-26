@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import createArticleDto from "../service/dto/CreateArticleDto";
+import createArticleDto from "../service/dto/article/ArticleCreateRequest";
 import articleService from "../service/ArticleService";
 
 export class ArticleController {
