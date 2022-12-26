@@ -8,7 +8,6 @@ export class App {
     this.app = express();
     this.setMiddleWares();
     this.setRouter();
-    this.showStartLog();
   }
 
   private setRouter(): void {
@@ -20,11 +19,4 @@ export class App {
     this.app.use(express.urlencoded({ extended: false }));
   }
 
-  private showStartLog(): void {
-    this.app.listen(8000, () => {
-      console.log("**----------------------------------**");
-      console.log("====      Server is On...!!!      ====");
-      console.log("**----------------------------------**");
-    });
-  }
 }
