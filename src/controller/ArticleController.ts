@@ -27,15 +27,4 @@ export class ArticleController {
       });
     }
   }
-
-  async deleteAllArticle(request: Request, response: Response) {
-    try {
-      await articleService.deleteAllArticle(request.params.user_id);
-      response.status(200).json();
-    } catch (exception) {
-      response.status(400).json({
-        errortype: exception.message,
-      });
-    }
-  }
 }
