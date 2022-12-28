@@ -8,6 +8,7 @@ export class User {
   @Column({
     type: "text",
     length: 10,
+    unique: true
   })
   userId: string;
 
@@ -20,6 +21,7 @@ export class User {
   @Column({
     type: "text",
     length: 30,
+    unique: true
   })
   email: string;
  
