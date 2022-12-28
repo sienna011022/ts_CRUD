@@ -11,5 +11,5 @@ router.get("/users", userController.findUsers);
 
 router.post("/users/:user_id/articles", articleController.createArticle);
 router.get("/users/:user_id/articles", articleController.findAllArticle);
-
+router.delete("/users/:user_id/articles", articleController.deleteAllArticle);
 export default router;

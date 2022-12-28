@@ -25,6 +25,16 @@ export class ArticleRepository {
 
     return articles;
   }
+
+  public async deleteAllArticle(user: User) {
+    this.articleRepository
+      .createQueryBuilder("article")
+      .delete()
+      .from(Article)
+      .where({ user : user })
+      .execute();
+  }
+
 }
 
 let articleRepository = new ArticleRepository();

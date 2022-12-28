@@ -4,12 +4,12 @@ import NotFoundUserException from "../../../exception/NotFoundUserException"
 export default class ArticleCreateRequest {
   private title: string;
   private content: string;
-  private user: string;
+  private author: string;
 
   private constructor(request: any) {
     this.title = request.title;
     this.content = request.content;
-    this.user = request.user;
+    this.author = request.author;
   }
 
   public createArticle(user: User) {
@@ -17,7 +17,7 @@ export default class ArticleCreateRequest {
   }
 
   public static newArticleDto(request: any) {
-    this.isValid(request.body.user, request.params.user_id);
+    this.isValid(request.body.author, request.params.user_id);
     return new ArticleCreateRequest(request.body);
   }
 
@@ -28,6 +28,6 @@ export default class ArticleCreateRequest {
   }
 
   public getUser() {
-    return this.user;
+    return this.author;
   }
 }

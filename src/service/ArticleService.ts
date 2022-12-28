@@ -24,7 +24,10 @@ export class ArticleService {
     return allArticles;
   }
 
-
+  public async deleteAllArticle(userId: string) {
+    const user = await userRepository.findUser(userId);
+    articleRepository.deleteAllArticle(user);
+  }
 }
 
 let articleService = new ArticleService();

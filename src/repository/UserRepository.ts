@@ -26,6 +26,7 @@ class UserRepository {
       throw new NotFoundUserException();
     }
   }
+
 }
 
 let userRepository = new UserRepository();
