@@ -18,7 +18,7 @@ export default class ArticleCreateRequest {
     return Article.from(this.title, this.content, user,this.articleNumber);
   }
 
-  public static newArticleDto(request: any) {
+  public static newArticleRequest(request: any) {
     this.isValid(request.body.author, request.params.user_id);
     return new ArticleCreateRequest(request.body);
   }

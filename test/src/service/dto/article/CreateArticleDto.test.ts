@@ -18,7 +18,7 @@ describe("CreateArticleRequest test", () => {
         articleNumber: 1,
       },
     };
-    expect(CreateArticleDto.newArticleDto(request)).toBeInstanceOf(
+    expect(CreateArticleDto.newArticleRequest(request)).toBeInstanceOf(
       CreateArticleDto
     );
   });
@@ -38,7 +38,7 @@ describe("CreateArticleRequest test", () => {
       },
     };
     try {
-      CreateArticleDto.newArticleDto(request);
+      CreateArticleDto.newArticleRequest(request);
     } catch (exception) {
       expect(exception).toBeInstanceOf(NotFoundUserException);
     }
@@ -57,7 +57,7 @@ describe("CreateArticleRequest test", () => {
         articleNumber: 1,
       },
     };
-    const requestDto = CreateArticleDto.newArticleDto(request);
+    const requestDto = CreateArticleDto.newArticleRequest(request);
     const newUser = User.from("sienna1022", "1234", "sienna1022@email.com");
 
     expect(requestDto.createArticle(newUser)).toBeInstanceOf(Article);

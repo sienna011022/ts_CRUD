@@ -6,7 +6,7 @@ import ArticleUpdateRequest from "../service/dto/article/ArticleUpdateArticleReq
 export class ArticleController {
   async createArticle(request: Request, response: Response) {
     try {
-      const article = articleCreateRequest.newArticleDto(request);
+      const article = articleCreateRequest.newArticleRequest(request);
       await articleService.createArticle(article);
       response.status(201).json();
     } catch (exception) {

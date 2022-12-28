@@ -12,7 +12,7 @@ export class Article {
   @Column()
   content: string;
 
-  @Column()
+  @Column({unique: true})
   articleNumber: number;
 
   @ManyToOne(() => User)
