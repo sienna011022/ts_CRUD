@@ -30,7 +30,7 @@ export class ArticleRepository {
   }
 
   public async updateArticleWithValiadation(request: ArticleUpdateRequest) {
-    const article = await this.getByArticleNumberAndUserId(
+    const article = await this.getArticleByArticleNumberAndUserId(
       request.articleNumber,
       request.userId
     );
@@ -42,7 +42,7 @@ export class ArticleRepository {
     this.updateArticle(article, request);
   }
 
-  private async getByArticleNumberAndUserId(
+  private async getArticleByArticleNumberAndUserId(
     articleNumber: string,
     userId: string
   ) {
@@ -67,14 +67,33 @@ export class ArticleRepository {
       .execute();
   }
 
-
-
-  public async deleteAllArticle(user: User) {
+  public async deleteAllArticle(userId) {
     this.articleRepository
       .createQueryBuilder("article")
-      .delete()
-      .from(Article)
-      .where({ user: user })
+      .delete({
+        relations: {
+          user: true,
+        },
+        where: {
+          user: {
+            userId: userId,
+          },
+        },
+      })
+      .execute();
+  }
+
+  public async deleteArticle(userId, articleNumber) {
+    const targetArticle = await this.getArticleByArticleNumberAndUserId(
+      articleNumber,
+      userId
+    );
+    if (targetArticle == null) {
+      throw new Error();
+    }
+    this.articleRepository
+      .createQueryBuilder("article")
+      .delete(targetArticle)
       .execute();
   }
 }

@@ -42,12 +42,27 @@ export class ArticleController {
   }
 
   async deleteAllArticle(request: Request, response: Response) {
-    articleService.deleteAllArticle(request.params.user_id);
-    response.status(200).json();
+    try {
+      articleService.deleteAllArticle(request.params.user_id);
+      response.status(200).json();
+    } catch (exception) {
+      response.status(400).json({
+        errortype: exception.message,
+      });
+    }
   }
-  catch(exception) {
-    response.status(400).json({
-      errortype: exception.message,
-    });
+d
+  async deleteArticle(request: Request, response: Response) {
+    try {
+      articleService.deleteArticle(
+        request.params.user_id,
+        request.params.article_id
+      );
+      response.status(200).json();
+    } catch (exception) {
+      response.status(400).json({
+        errortype: exception.message,
+      });
+    }
   }
 }

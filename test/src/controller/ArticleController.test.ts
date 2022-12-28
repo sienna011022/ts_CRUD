@@ -75,5 +75,17 @@ describe("ArticleController 테스트", () => {
     expect(res._isEndCalled()).toBeTruthy();
   });
   
+   
+  it("특정 게시물을 삭제한다", async () => {
+    articleRepository.deleteArticle = jest.fn();
+
+    req.params.user_id = userId;
+    req.params.article_id = 1;
+
+    await articleController.deleteArticle(req, res);
+    expect(res.statusCode).toBe(200);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+  
 
 });

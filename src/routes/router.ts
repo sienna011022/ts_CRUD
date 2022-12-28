@@ -13,4 +13,5 @@ router.post("/users/:user_id/articles", articleController.createArticle);
 router.get("/users/:user_id/articles", articleController.findAllArticle);
 router.patch("/users/:user_id/articles/:article_id", articleController.updateArticle);
 router.delete("/users/:user_id/articles", articleController.deleteAllArticle);
+router.delete("/users/:user_id/articles/:article_id", articleController.deleteArticle);
 export default router;

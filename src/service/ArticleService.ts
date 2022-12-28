@@ -24,13 +24,16 @@ export class ArticleService {
     return allArticles;
   }
 
-  public async updateArticle(request :ArticleUpdateRequest) {
+  public async updateArticle(request: ArticleUpdateRequest) {
     await articleRepository.updateArticleWithValiadation(request);
   }
 
   public async deleteAllArticle(userId: string) {
-    const user = await userRepository.findUser(userId);
-    articleRepository.deleteAllArticle(user);
+    articleRepository.deleteAllArticle(userId);
+  }
+
+  public async deleteArticle(userId: string, articleId: string) {
+    articleRepository.deleteArticle(userId,articleId);
   }
 }
 
