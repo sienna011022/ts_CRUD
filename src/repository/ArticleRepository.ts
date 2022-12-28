@@ -1,5 +1,4 @@
 import { Article } from "../entity/Article";
-import { User } from "../entity/User";
 import { AppDataSource } from "../../data-source";
 import NotFoundArticleException from "../exception/NotFoundArticleException";
 import ArticleUpdateRequest from "../../src/service/dto/article/ArticleUpdateArticleRequest";
@@ -42,7 +41,7 @@ export class ArticleRepository {
     this.updateArticle(article, request);
   }
 
-  private async getArticleByArticleNumberAndUserId(
+  public async getArticleByArticleNumberAndUserId(
     articleNumber: string,
     userId: string
   ) {

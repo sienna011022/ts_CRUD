@@ -1,4 +1,5 @@
 import express from "express";
+import 'reflect-metadata'
 import router from "./src/routes/router";
 
 export class App {
