@@ -12,6 +12,9 @@ export class Article {
   @Column()
   content: string;
 
+  @Column()
+  articleNumber: number;
+
   @ManyToOne(() => User)
   user: User;
 
@@ -19,11 +22,17 @@ export class Article {
     this.user = user;
   }
 
-  public static from(title: string, content: string, user: User) {
+  public static from(
+    title: string,
+    content: string,
+    user: User,
+    articleNumber: number
+  ) {
     const article = new Article();
     article.title = title;
     article.content = content;
     article.user = user;
+    article.articleNumber = articleNumber;
     return article;
   }
 }

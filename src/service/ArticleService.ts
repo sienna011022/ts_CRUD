@@ -4,7 +4,7 @@ import articleRepository from "../repository/ArticleRepository";
 import userRepository from "../repository/UserRepository";
 import ArticleCreateRequest from "./dto/article/ArticleCreateRequest";
 import ArticleResponse from "./dto/article/ArticleResponse";
-import ArticleUpdateRequest from "./dto/article/ArticleUpdateRequest.";
+import ArticleUpdateRequest from "./dto/article/ArticleUpdateArticleRequest";
 
 export class ArticleService {
   public async createArticle(request: ArticleCreateRequest) {
@@ -20,7 +20,12 @@ export class ArticleService {
     for (let i = 0; i < articles.length; i++) {
       allArticles.push(new ArticleResponse(articles[i]));
     }
+
     return allArticles;
+  }
+
+  public async updateArticle(request :ArticleUpdateRequest) {
+    await articleRepository.updateArticleWithValiadation(request);
   }
 
   public async deleteAllArticle(userId: string) {

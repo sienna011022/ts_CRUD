@@ -60,5 +60,20 @@ describe("ArticleController 테스트", () => {
     expect(res._isEndCalled()).toBeTruthy();
   });
   
+  
+  it("게시물을 수정한다", async () => {
+    articleRepository.updateArticleWithValiadation = jest.fn();
+
+    req.params.user_id = userId;
+    req.params.article_id = 1;
+    req.body = {
+      "title" : "modify",
+      "content" : "this is modify content"
+    }
+    await articleController.updateArticle(req, res);
+    expect(res.statusCode).toBe(204);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+  
 
 });

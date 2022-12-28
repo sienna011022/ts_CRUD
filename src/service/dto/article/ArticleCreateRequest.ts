@@ -5,15 +5,17 @@ export default class ArticleCreateRequest {
   private title: string;
   private content: string;
   private author: string;
+  private articleNumber: number;
 
   private constructor(request: any) {
+    this.articleNumber = request.articleNumber;
     this.title = request.title;
     this.content = request.content;
     this.author = request.author;
   }
 
   public createArticle(user: User) {
-    return Article.from(this.title, this.content, user);
+    return Article.from(this.title, this.content, user,this.articleNumber);
   }
 
   public static newArticleDto(request: any) {

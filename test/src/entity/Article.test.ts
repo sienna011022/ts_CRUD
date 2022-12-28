@@ -8,8 +8,8 @@ describe("Article Entity", () => {
     const title = "안녕하세요";
     const content = "김성윤입니다";
     const user = newUser;
-    
-    const article = Article.from(title, content, user);
+    const articleNumber = 1;
+    const article = Article.from(title, content, user,articleNumber);
 
     expect(article.title).toBe(title);
     expect(article.content).toBe(content);
