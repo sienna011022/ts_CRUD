@@ -4,6 +4,7 @@ import articleRepository from "../repository/ArticleRepository";
 import userRepository from "../repository/UserRepository";
 import ArticleCreateRequest from "./dto/article/ArticleCreateRequest";
 import ArticleResponse from "./dto/article/ArticleResponse";
+import ArticleUpdateRequest from "./dto/article/ArticleUpdateRequest.";
 
 export class ArticleService {
   public async createArticle(request: ArticleCreateRequest) {
@@ -14,13 +15,11 @@ export class ArticleService {
 
   public async findAllArticle(userId: string) {
     let allArticles: ArticleResponse[] = new Array<ArticleResponse>();
-    const user = await userRepository.findUser(userId);
-    const articles = await articleRepository.findAllArticle(user);
+    const articles = await articleRepository.findAllArticle(userId);
 
     for (let i = 0; i < articles.length; i++) {
       allArticles.push(new ArticleResponse(articles[i]));
     }
-
     return allArticles;
   }
 

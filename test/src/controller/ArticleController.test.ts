@@ -37,8 +37,8 @@ describe("ArticleController 테스트", () => {
   });
 
   it("모든 게시물을 조회한다", async () => {
-    const requestArticle1 = Article.from("딸기", "딸기는 맛있어", user);
-    const requestArticle2 = Article.from("바나나", "바나나는 맛있어", user);
+    const requestArticle1 = Article.from("딸기", "딸기는 맛있어", user,1);
+    const requestArticle2 = Article.from("바나나", "바나나는 맛있어", user,2);
 
     const allArticles = new Array<Article>(requestArticle1, requestArticle2);
 
@@ -50,24 +50,6 @@ describe("ArticleController 테스트", () => {
     expect(res._getJSONData().length).toBe(2);
   });
 
-
-  it("요청한 사용자와 게시물에 저장된 작성자가 일치 하지 않으면 에러를 반환한다.", async () => {
-    articleRepository.createArticle = jest.fn();
-    const otherUser = User.from("otherUser", "1234", "otherUser@naver.com");
-    userRepository.findUser = jest.fn().mockImplementation(() => otherUser);
-
-    const requestArticle1 = Article.from("딸기", "딸기는 맛있어", user);
-    const requestArticle2 = Article.from("바나나", "바나나는 맛있어", user);
-
-    const allArticles = new Array<Article>(requestArticle1, requestArticle2);
-
-    articleRepository.findAllArticle = jest
-      .fn()
-      .mockImplementation(() => allArticles);
-
-    await articleController.findAllArticle(req, res);
-    expect(res._getJSONData().length).toBe(2);
-  });
 
   it("유저의 모든 게시물을 삭제한다", async () => {
     articleRepository.deleteAllArticle = jest.fn();
@@ -77,5 +59,6 @@ describe("ArticleController 테스트", () => {
     expect(res.statusCode).toBe(200);
     expect(res._isEndCalled()).toBeTruthy();
   });
+  
 
 });

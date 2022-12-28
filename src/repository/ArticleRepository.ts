@@ -14,12 +14,14 @@ export class ArticleRepository {
     await this.articleRepository.save(newArticle);
   }
 
-  public async findAllArticle(user: User) {
-    const articles = await this.articleRepository.find({
-      where: [{ user: user }],
-    });
+  public async findAllArticle(userId: string) {
+    const articles = await this.articleRepository
+      .createQueryBuilder("article")
+      .leftJoinAndSelect("article.user", "user")
+      .where("user.userId = :userId", { userId: userId })
+      .getMany();
 
-    if(articles.length == 0){
+    if (articles.length == 0) {
       throw new NotFoundArticleException();
     }
 
@@ -31,10 +33,9 @@ export class ArticleRepository {
       .createQueryBuilder("article")
       .delete()
       .from(Article)
-      .where({ user : user })
+      .where({ user: user })
       .execute();
   }
-
 }
 
 let articleRepository = new ArticleRepository();
