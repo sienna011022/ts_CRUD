@@ -51,7 +51,7 @@ export class ArticleController {
       });
     }
   }
-d
+
   async deleteArticle(request: Request, response: Response) {
     try {
       articleService.deleteArticle(

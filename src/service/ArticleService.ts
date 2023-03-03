@@ -5,6 +5,7 @@ import userRepository from "../repository/UserRepository";
 import ArticleCreateRequest from "./dto/article/ArticleCreateRequest";
 import ArticleResponse from "./dto/article/ArticleResponse";
 import ArticleUpdateRequest from "./dto/article/ArticleUpdateArticleRequest";
+import NotFoundArticleException from "../exception/NotFoundArticleException";
 
 export class ArticleService {
   public async createArticle(request: ArticleCreateRequest) {

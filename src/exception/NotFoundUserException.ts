@@ -1,6 +1,8 @@
+import { ErrorType } from "./errorType";
+
 export default class NotFoundUserException extends Error {
   constructor() {
-    super("U001");
+    super(ErrorType.U001);
     this.name = "NotFoundUserException";
   }
 }

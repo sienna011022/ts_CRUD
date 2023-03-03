@@ -1,6 +1,8 @@
+import { ErrorType } from "./errorType";
+
 export default class NotFoundArticleException extends Error {
   constructor() {
-    super("A001");
+    super(ErrorType.A001);
     this.name = "NotFoundArticleException";
   }
 }

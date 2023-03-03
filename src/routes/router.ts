@@ -17,5 +17,6 @@ router.patch("/users/:user_id/articles/:article_id", articleController.updateArt
 router.delete("/users/:user_id/articles", articleController.deleteAllArticle);
 router.delete("/users/:user_id/articles/:article_id", articleController.deleteArticle);
 
+router.get("/pictures", pictureController.findAllPictures);
 router.post("/users/:user_id/articles/:article_id/pictures", pictureController.createPicture);
 export default router;

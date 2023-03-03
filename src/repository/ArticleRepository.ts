@@ -2,6 +2,7 @@ import { Article } from "../entity/Article";
 import { AppDataSource } from "../../data-source";
 import NotFoundArticleException from "../exception/NotFoundArticleException";
 import ArticleUpdateRequest from "../../src/service/dto/article/ArticleUpdateArticleRequest";
+import IllegalUserException from "../../src/exception/IllegalUserException";
 
 export class ArticleRepository {
   private articleRepository;
@@ -88,7 +89,7 @@ export class ArticleRepository {
       userId
     );
     if (targetArticle == null) {
-      throw new Error();
+      throw new IllegalUserException();
     }
     this.articleRepository
       .createQueryBuilder("article")

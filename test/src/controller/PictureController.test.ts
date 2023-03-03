@@ -1,10 +1,11 @@
-import pictureRepository from "../../../src/repository/PictureRepository";
-
 import httpMocks from "node-mocks-http";
 import { Article } from "../../../src/entity/Article";
 import { User } from "../../../src/entity/User";
 import articleRepository from "../../../src/repository/ArticleRepository";
 import { PictureController } from "../../../src/controller/PictureController";
+import { Picture } from "../../../src/entity/Picture";
+import pictureRepository from "../../../src/repository/PictureRepository";
+import userRepository from "../../../src/repository/UserRepository";
 
 let req, res, userId, articleId;
 let newUser, newArticle;
@@ -37,5 +38,25 @@ describe("PictureController 테스트", () => {
     await pictureController.createPicture(req, res);
     expect(res.statusCode).toBe(201);
     expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  it("모든 사진을 조회한다", async () => {
+    const newUser = User.from(userId, "1234", "sienna1022@email.com");
+    const newArticle = Article.from(
+      "안녕하세요",
+      "김성윤입니다",
+      newUser,
+      articleId
+    );
+    const newPicture1 = Picture.from("pictureURL1", newArticle);
+    const newPicture2 = Picture.from("pictureURL2", newArticle);
+    const allPicture = new Array<Picture>(newPicture1, newPicture2);
+
+    pictureRepository.getAllPicture = jest
+      .fn()
+      .mockImplementation(() => allPicture);
+    await pictureController.findAllPictures(req, res);
+
+    expect(res._getJSONData().length).toBe(2);
   });
 });

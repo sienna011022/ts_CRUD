@@ -12,10 +12,10 @@ export class Article {
   @Column()
   content: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   articleNumber: number;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: "CASCADE" })
   user: User;
 
   public createWithUser(user: User) {

@@ -10,7 +10,7 @@ export class UserController {
     response.status(201).json();
   }
 
-  async findUsers(response: Response) {
+  async findUsers(request: Request,response: Response) {
     const allUsers: UserResponse[] = await userService.findUsers();
     response.status(200).json(allUsers);
   }

@@ -14,4 +14,15 @@ export class PictureController {
       });
     }
   }
+
+  async findAllPictures(request: Request, response: Response) {
+    try {
+      const articles = await pictureService.findAllPicture();
+      response.status(201).json(articles);
+    } catch (exception) {
+      response.status(400).json({
+        errortype: exception.message,
+      });
+    }
+  }
 }

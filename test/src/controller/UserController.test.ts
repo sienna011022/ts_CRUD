@@ -32,7 +32,7 @@ describe("UserController 테스트", () => {
     const allUsers = new Array<User>(requestUser1, requestUser2);
 
     repository.findUsers = jest.fn().mockImplementation(() => allUsers);
-    await userController.findUsers(res);
+    await userController.findUsers(req,res);
 
     expect(res._getJSONData().length).toBe(2);
   });
